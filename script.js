@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
             
-            fetch("https://script.google.com/macros/s/AKfycbzg9Rg8Ge8MAA2OkrQK_a1Z1xzIM5m1EHtIzOGYPzjyxIeJZj6lxihOdXogcKT1lNv8/exec", {
+            fetch("https://script.google.com/macros/s/AKfycby7zRSF0WlCusTXoWOaSBtbY7BhQ3wcWcmO0LymZuCr_ZrPMIzDl0io8WCegwwDxZVs/exec", {
                 method: "POST",
                 body: JSON.stringify({ username, password, type: "login" }),
                 headers: { "Content-Type": "application/json" }
