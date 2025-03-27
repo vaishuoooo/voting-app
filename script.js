@@ -7,31 +7,24 @@ document.addEventListener("DOMContentLoaded", function () {
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
             
-            // Send login data to Google Sheets
-            fetch("https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_URL/exec", {
+            fetch("https://script.google.com/macros/s/AKfycbzg9Rg8Ge8MAA2OkrQK_a1Z1xzIM5m1EHtIzOGYPzjyxIeJZj6lxihOdXogcKT1lNv8/exec", {
                 method: "POST",
                 body: JSON.stringify({ username, password, type: "login" }),
                 headers: { "Content-Type": "application/json" }
-            }).then(() => {
-                window.location.href = "voting.html"; // Redirect to voting page
+            })
+            .then(response => response.text())  // Convert response to text for debugging
+            .then(data => {
+                console.log("Server Response:", data); // Check response in console
+                if (data.trim() === "Success") {
+                    window.location.href = "voting.html"; // Redirect to voting page
+                } else {
+                    alert("Login failed. Try again!");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Something went wrong. Check console for details.");
             });
         });
     }
-
-    const voteButtons = document.querySelectorAll(".voteBtn");
-    voteButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            const vote = this.getAttribute("data-name");
-
-            // Send vote to Google Sheets
-            fetch("https://script.google.com/macros/s/AKfycbzg9Rg8Ge8MAA2OkrQK_a1Z1xzIM5m1EHtIzOGYPzjyxIeJZj6lxihOdXogcKT1lNv8/exec", {
-                method: "POST",
-                body: JSON.stringify({ vote, type: "vote" }),
-                headers: { "Content-Type": "application/json" }
-            }).then(() => {
-                alert("Vote submitted! Thank you!");
-                window.location.href = "thankyou.html";
-            });
-        });
-    });
 });
