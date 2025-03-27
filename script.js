@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const vote = this.getAttribute("data-name");
 
             // Send vote to Google Sheets
-            fetch("https://script.google.com/macros/s/YOUR_GOOGLE_SCRIPT_URL/exec", {
+            fetch("https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbzg9Rg8Ge8MAA2OkrQK_a1Z1xzIM5m1EHtIzOGYPzjyxIeJZj6lxihOdXogcKT1lNv8/exec/exec", {
                 method: "POST",
                 body: JSON.stringify({ vote, type: "vote" }),
                 headers: { "Content-Type": "application/json" }
